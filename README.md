@@ -7,4 +7,15 @@
 Muutos
 
 
+<<<<<<< HEAD
 Muutos 2.0
+=======
+
+
+
+
+
+
+
+Muutos 3
+>>>>>>> 3d69d50b93283e568d5bf3dd8618e3a2005f9dcc
