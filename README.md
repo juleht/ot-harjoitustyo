@@ -5,3 +5,6 @@
 [komentorivi.txt](https://github.com/juleht/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Muutos
+
+
+Muutos 2.0
