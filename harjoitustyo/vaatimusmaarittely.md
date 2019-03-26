@@ -1,15 +1,15 @@
-#####Vaatimusmäärittely
+##### Vaatimusmäärittely
 
 Budjetointi sovellus – henkilökohtaisten menojen seurantaan. Käyttäjän 
 on mahdollista tallentaa sovellukseen kuukausittainen budjettinsa, sekä 
 yksittäisiä menojaan. Sovellus laskee erilaisia tunnusluku menoista 
 käyttökohteen mukaan.
 
-###Käyttäjät
+### Käyttäjät
 
 Sovelluksella on vain yksi käyttäjärooli eli normaali käyttäjä. 
 
-###Käyttöliittymäluonnos
+### Käyttöliittymäluonnos
 
 Sovellus koostuu kolmesta eri näkymästä. Ensimmäisessä näkymässä 
 käyttäjälle avautuu kirjautumissivu, johon on mahdollista syöttää 
@@ -17,9 +17,9 @@ käyttäjätunnus tai luoda uusi käyttäjä. Onnistuneen kirjautumisen
 jälkeen käyttäjä ohjataan sovellusnäkymään, jossa näkyy budjetti ja 
 tapahtumia, menojen muodossa.
 
-###Perusversion toiminnallisuus
+### Perusversion toiminnallisuus
 
-#Ennen kirjautumista
+# Ennen kirjautumista
 * käyttäjä voi luoda järjestelmään käyttäjätunnuksen
 * käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 4 
 merkkiä
@@ -28,7 +28,7 @@ merkkiä
 kirjautumislomakkeelle
 * jos käyttäjää ei olemassa, ilmoittaa järjestelmä tästä
 
-#Kirjautumisen jälkeen
+# Kirjautumisen jälkeen
 
 * käyttäjä asettaa kuukausittaisen budjettinsa
 * jos budjettinsa jo olemassa, käyttäjä ohjataan suoraan 
@@ -37,7 +37,7 @@ sovellusnäkymään
 * sovellus vähentää tapahtumat budjetista automaattisesti ja näyttää 
 jäljellä olevan budjettinsa
 
-###Jatkokehitysideat
+### Jatkokehitysideat
 
 * Perusversion jälkeen budjetointi sovellusta täydennetään seuraavilla 
 toiminnallisuuksilla
