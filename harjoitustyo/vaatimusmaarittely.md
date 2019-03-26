@@ -1,4 +1,4 @@
-##### Vaatimusmäärittely
+# Vaatimusmäärittely
 
 Budjetointi sovellus – henkilökohtaisten menojen seurantaan. Käyttäjän 
 on mahdollista tallentaa sovellukseen kuukausittainen budjettinsa, sekä 
@@ -19,7 +19,8 @@ tapahtumia, menojen muodossa.
 
 ### Perusversion toiminnallisuus
 
-# Ennen kirjautumista
+##### Ennen kirjautumista
+
 * käyttäjä voi luoda järjestelmään käyttäjätunnuksen
 * käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 4 
 merkkiä
@@ -28,7 +29,7 @@ merkkiä
 kirjautumislomakkeelle
 * jos käyttäjää ei olemassa, ilmoittaa järjestelmä tästä
 
-# Kirjautumisen jälkeen
+##### Kirjautumisen jälkeen
 
 * käyttäjä asettaa kuukausittaisen budjettinsa
 * jos budjettinsa jo olemassa, käyttäjä ohjataan suoraan 
