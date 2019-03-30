@@ -1,6 +1,4 @@
-
-
-##BudgetApp
+## BudgetApp
 
 
 Sovelluksen avulla käyttäjän on mahdollista pitää kirjaa seurata tulojaan ja 
