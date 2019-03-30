@@ -1,0 +1,6 @@
+2019-03-30 16:16:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" already exists; SQL statement:
+CREATE TABLE User (id serial, username varchar(20), primary key (id)); [42101-197]
+2019-03-30 16:16:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" already exists; SQL statement:
+CREATE TABLE User (id serial, username varchar(20), primary key (id)); [42101-197]
