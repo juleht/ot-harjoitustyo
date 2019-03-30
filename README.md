@@ -1,10 +1,8 @@
 ## BudgetApp
 
 
-Sovelluksen avulla käyttäjän on mahdollista pitää kirjaa seurata tulojaan ja 
-menojaan sekä tietää tarkemmin suurimmat meno kohteensa.
-
-Sovellus on ohjelmistotekniikan menetelmät kurssin harjoitustyö.
+Sovelluksen avulla käyttäjän on mahdollista helpottaa rahanhallintaa ja 
+pitää kirjaa henkilökohtaista kuluistaan.
 
 ### Dokumentaatio
 
