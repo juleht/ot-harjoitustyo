@@ -1,12 +1,12 @@
 
-#BudgetApp
+##BudgetApp
 
 Sovelluksen avulla käyttäjän on mahdollista pitää kirjaa seurata tulojaan ja 
 menojaan sekä tietää tarkemmin suurimmat meno kohteensa.
 
 Sovellus on ohjelmistotekniikan menetelmät kurssin harjoitustyö.
 
-## Dokumentaatio
+### Dokumentaatio
 
 [Käyttöohje.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
 [Arkkitehtuurikuvaus.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/Arkkitehtuurikuvaus.md)
@@ -14,11 +14,11 @@ Sovellus on ohjelmistotekniikan menetelmät kurssin harjoitustyö.
 [tuntikirjanpito.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 [vaatimusmaarittely.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-## Releaset
+### Releaset
 
-## Komentorivitoiminnot
+### Komentorivitoiminnot
 
-### Testaus
+#### Testaus
 
 Testit suoritetaan komennolla
 
@@ -31,7 +31,7 @@ mvn jacoco:report
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto 
 target/site/jacoco/index.html
 
-### Suoritettavan jarin generointi
+#### Suoritettavan jarin generointi
 
 Komento
 
