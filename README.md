@@ -7,9 +7,13 @@ pitää kirjaa henkilökohtaista kuluistaan.
 ### Dokumentaatio
 
 [Käyttöohje.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
+
 [Arkkitehtuurikuvaus.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/Arkkitehtuurikuvaus.md)
+
 [Testausdokumentti.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/Testausdokumentti.md)
+
 [tuntikirjanpito.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
 [vaatimusmaarittely.md](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 ### Releaset
