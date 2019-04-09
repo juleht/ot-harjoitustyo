@@ -11,9 +11,6 @@ public class UserTest {
 
     User user;
 
-    public UserTest() {
-    }
-
     @Before
     public void setUp() {
         user = new User(1, "username");

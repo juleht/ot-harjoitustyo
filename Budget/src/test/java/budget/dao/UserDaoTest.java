@@ -7,9 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,9 +15,6 @@ public class UserDaoTest {
 
     private Database testDB;
     private UserDao userdao;
-
-    public UserDaoTest() {
-    }
 
     @Before
     public void setUp() throws SQLException {
@@ -30,11 +25,15 @@ public class UserDaoTest {
     }
 
     @After
-    public void clearTablesInDatabase() throws SQLException {
+    public void clearTablesInTestDatabase() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./budgetDBtest", "sa", "");
         String sql = "DROP TABLE User";
+        String sql2 = "DROP TABLE Event";
         PreparedStatement st = conn.prepareStatement(sql);
+        PreparedStatement st2 = conn.prepareStatement(sql2);
+
         st.executeUpdate();
+        st2.executeUpdate();
     }
 
     @Test

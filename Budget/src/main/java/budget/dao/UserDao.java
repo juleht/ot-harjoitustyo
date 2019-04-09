@@ -25,6 +25,8 @@ public class UserDao implements Dao<User, Integer> {
         st.setString(1, user.getUsername());
 
         st.executeUpdate();
+        st.close();
+        conn.close();
         return user;
     }
 
@@ -41,6 +43,9 @@ public class UserDao implements Dao<User, Integer> {
         }
 
         User u = new User(rs.getInt("id"), rs.getString("username"));
+        st.close();
+        rs.close();
+        conn.close();
         return u;
     }
 
@@ -52,6 +57,8 @@ public class UserDao implements Dao<User, Integer> {
         st.setString(1, user.getUsername());
         st.setInt(2, user.getId());
         st.executeUpdate();
+        st.close();
+        conn.close();
         return user;
     }
 
@@ -59,10 +66,12 @@ public class UserDao implements Dao<User, Integer> {
     public void delete(Integer key) throws SQLException {
         Connection conn = database.getConnection();
         String sql = "DELETE FROM User WHERE id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
+        PreparedStatement st = conn.prepareStatement(sql);
 
-        stmt.setInt(1, key);
-        stmt.executeUpdate();
+        st.setInt(1, key);
+        st.executeUpdate();
+        st.close();
+        conn.close();
     }
 
     @Override
@@ -82,6 +91,9 @@ public class UserDao implements Dao<User, Integer> {
             users.add(u);
 
         }
+        st.close();
+        rs.close();
+        conn.close();
         return users;
     }
 

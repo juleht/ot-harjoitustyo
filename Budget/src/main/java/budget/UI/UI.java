@@ -1,51 +1,51 @@
-package budget.UI;
+package budget.ui;
 
-import budget.dao.UserDao;
+import budget.domain.BudgetLogic;
 import budget.domain.User;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
 
-public class UI {
+public class Ui {
 
-    private UserDao userDao;
+    private BudgetLogic logic;
 
-    public void start(Scanner reader, UserDao userdao) throws SQLException {
-        this.userDao = userdao;
+    public void start(Scanner reader, BudgetLogic logic) throws SQLException {
+        this.logic = logic;
+
         while (true) {
             System.out.println("Commands:");
             System.out.println("x - end");
-            System.out.println("1 - log on");
-            System.out.println("2 - add user");
+            System.out.println("1 - add user");
+            System.out.println("2 - log on");
+
             String command = reader.nextLine();
 
             if (command.endsWith("x")) {
                 break;
+
             } else if (command.equals("1")) {
-                logOn(reader);
+                this.logic.addUser(reader);
+
             } else if (command.equals("2")) {
-                addUser(reader);
+                User u = this.logic.logOn(reader);
+
+                if (u != null) {
+
+                    System.out.println("Commands:");
+                    System.out.println("x - log out");
+                    System.out.println("add - add income or expenditure");
+
+                    command = reader.nextLine();
+
+                    if (command.equals("x")) {
+                        break;
+                    } else if (command.equals("add")) {
+                        this.logic.setEvent(reader, u);
+
+                    }
+                }
             }
         }
     }
 
-    private void addUser(Scanner reader) throws SQLException {
-
-        System.out.println("Enter user name: ");
-        String username = reader.nextLine();
-        userDao.create(new User(username));
-    }
-
-    private int logOn(Scanner reader) throws SQLException {
-        List<User> users = userDao.list();
-        System.out.println("Enter username:");
-        String username = reader.nextLine();
-
-        for (User u : users) {
-            if (u.getUsername().equals(username)) {
-                return u.getId();
-            }
-        }
-        return -1;
-    }
 }
