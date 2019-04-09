@@ -36,7 +36,7 @@ kirjautumislomakkeelle
 sovellusnäkymään
 * käyttäjä voi luoda sovellukseen uusia menoja
 * sovellus vähentää tapahtumat budjetista automaattisesti ja näyttää 
-jäljellä olevan budjettinsa
+jäljellä olevan budjetin
 
 ### Jatkokehitysideat
 
