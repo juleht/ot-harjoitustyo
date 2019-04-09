@@ -1,0 +1,2 @@
+![kuva pakkauskaavio]($getPackageFigure.png)
+
