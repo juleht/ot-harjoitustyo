@@ -18,6 +18,8 @@ pitää kirjaa henkilökohtaista kuluistaan.
 
 ### Releaset
 
+[viikon 5 release](https://github.com/juleht/ot-harjoitustyo/releases)
+
 ### Komentorivitoiminnot
 
 #### Testaus
