@@ -97,4 +97,22 @@ public class UserDao implements Dao<User, Integer> {
         return users;
     }
 
+    public User readUsername(String username) throws SQLException {
+        Connection conn = database.getConnection();
+        String sql = "SELECT * FROM User WHERE username = ?";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, username);
+        ResultSet rs = st.executeQuery();
+
+        if (!rs.next()) {
+            return null;
+        }
+
+        User u = new User(rs.getInt("id"), rs.getString("username"));
+        st.close();
+        rs.close();
+        conn.close();
+        return u;
+    }
+
 }

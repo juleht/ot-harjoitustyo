@@ -22,6 +22,6 @@ public class EventTest {
 
     @Test
     public void constructorCreatesEvent() {
-        assertEquals(this.event.toString(), "1 10.0 food 2000-01-01 null first");
+        assertEquals(this.event.toString(), "10.0 food 2000-01-01");
     }
 }

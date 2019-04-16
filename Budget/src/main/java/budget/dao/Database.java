@@ -1,14 +1,11 @@
 package budget.dao;
 
-import budget.ui.Main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Database {
 
@@ -35,15 +32,13 @@ public class Database {
                 st.executeUpdate(sqlTables);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 
     private List<String> setDatabase() {
         List<String> commands = new ArrayList<>();
-        commands.add("DROP TABLE User IF EXISTS;");
         commands.add("CREATE TABLE User (id serial, username varchar(20), primary key (id));");
-        commands.add("DROP TABLE Event IF EXISTS;");
         commands.add("CREATE TABLE Event (id serial, amount real, eventtype varchar(30) ,eventdate DATE, user_id integer, foreign key (user_id) references User(id), primary key (id));");
         return commands;
     }

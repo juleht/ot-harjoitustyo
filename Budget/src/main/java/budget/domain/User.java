@@ -15,6 +15,9 @@ public class User {
         this.events = new ArrayList<>();
     }
 
+    public User() {
+    }
+
     public User(String username) {
         this.username = username;
         this.events = new ArrayList<>();
@@ -46,6 +49,6 @@ public class User {
 
     @Override
     public String toString() {
-        return this.id + " " + this.username;
+        return this.username;
     }
 }

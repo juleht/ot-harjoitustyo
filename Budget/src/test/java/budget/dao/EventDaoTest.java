@@ -3,16 +3,13 @@ package budget.dao;
 import budget.domain.Event;
 import budget.domain.User;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -58,15 +55,6 @@ public class EventDaoTest {
     }
 
     @Test
-    public void createEventNotAssingedToUser() throws SQLException {
-        User thirdUser = new User(3, "third");
-        Event thirdEvent = new Event(30.0, "taxi", LocalDate.parse("2019-03-03"), thirdUser);
-        userDao.create(thirdUser);
-        eventDao.create(thirdEvent);
-        assertEquals(eventDao.read(3).toString(), "3 30.0 taxi 2019-03-03 null");
-    }
-
-    @Test
     public void readReturnNullIfEventNotExists() throws SQLException {
         assertEquals(eventDao.read(4), null);
     }
@@ -104,7 +92,7 @@ public class EventDaoTest {
         Event second = eventDao.read(2);
         second.setAmount(20.0);
         eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "2 20.0 clothes 2019-02-02 null");
+        assertEquals(eventDao.read(2).toString(), "20.0 clothes 2019-02-02");
     }
 
     @Test
@@ -112,7 +100,7 @@ public class EventDaoTest {
         Event second = eventDao.read(2);
         second.setEventtype("food");
         eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "2 10.0 food 2019-02-02 null");
+        assertEquals(eventDao.read(2).toString(), "10.0 food 2019-02-02");
     }
 
     @Test
@@ -120,7 +108,7 @@ public class EventDaoTest {
         Event second = eventDao.read(2);
         second.setEventdate(LocalDate.parse("2019-02-03"));
         eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "2 10.0 clothes 2019-02-03 null");
+        assertEquals(eventDao.read(2).toString(), "10.0 clothes 2019-02-03");
     }
 
     @Test

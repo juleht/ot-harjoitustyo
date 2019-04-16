@@ -34,7 +34,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return this.id + " " + this.amount + " " + this.eventtype + " " + this.eventdate + " " + this.user;
+        return this.amount + " " + this.eventtype + " " + this.eventdate;
     }
 
     public LocalDate getEventdate() {

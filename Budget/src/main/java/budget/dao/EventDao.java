@@ -23,13 +23,10 @@ public class EventDao implements Dao<Event, Integer> {
         Connection conn = database.getConnection();
         String sql = "INSERT INTO Event (amount, eventtype, eventdate, user_id) VALUES (?, ?, ?, ?)";
 
-        //localdate to sql date
-        java.sql.Date edate = java.sql.Date.valueOf(event.getEventdate());
-
         PreparedStatement st = conn.prepareStatement(sql);
         st.setDouble(1, event.getAmount());
         st.setString(2, event.getEventtype());
-        st.setDate(3, edate);
+        st.setDate(3, java.sql.Date.valueOf(event.getEventdate()));
         st.setInt(4, event.getUser().getId());
 
         st.executeUpdate();
@@ -51,9 +48,7 @@ public class EventDao implements Dao<Event, Integer> {
             return null;
         }
 
-        //sql date to LocalDate
-        LocalDate edate = rs.getDate("eventdate").toLocalDate();
-        Event e = new Event(rs.getInt("id"), rs.getDouble("amount"), rs.getString("eventtype"), edate);
+        Event e = new Event(rs.getInt("id"), rs.getDouble("amount"), rs.getString("eventtype"), rs.getDate("eventdate").toLocalDate());
 
         st.close();
         rs.close();
@@ -68,12 +63,9 @@ public class EventDao implements Dao<Event, Integer> {
         String sql = "UPDATE Event SET amount = ?, eventtype=?, eventdate = ? WHERE id = ?";
         PreparedStatement st = conn.prepareStatement(sql);
 
-        //LocalDate to sql date
-        Date edate = Date.valueOf(event.getEventdate());
-
         st.setDouble(1, event.getAmount());
         st.setString(2, event.getEventtype());
-        st.setDate(3, edate);
+        st.setDate(3, Date.valueOf(event.getEventdate()));
         st.setInt(4, event.getId());
 
         st.executeUpdate();
@@ -108,11 +100,28 @@ public class EventDao implements Dao<Event, Integer> {
         while (rs.next()) {
             int id = rs.getInt("id");
             double amount = rs.getDouble("amount");
-
             String eventtype = rs.getString("eventtype");
-            //sql date to LocalDate
             LocalDate edate = rs.getDate("eventdate").toLocalDate();
+            Event e = new Event(id, amount, eventtype, edate);
+            events.add(e);
 
+        }
+        return events;
+    }
+
+    public List<Event> listById(int userId) throws SQLException {
+        Connection conn = database.getConnection();
+        String sql = "SELECT * FROM Event WHERE user_id = ?";
+        List<Event> events = new ArrayList<>();
+        PreparedStatement st = conn.prepareCall(sql);
+        st.setInt(1, userId);
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            double amount = rs.getDouble("amount");
+            String eventtype = rs.getString("eventtype");
+            LocalDate edate = rs.getDate("eventdate").toLocalDate();
             Event e = new Event(id, amount, eventtype, edate);
             events.add(e);
 

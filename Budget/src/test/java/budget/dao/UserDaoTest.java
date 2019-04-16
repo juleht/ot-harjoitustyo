@@ -40,7 +40,7 @@ public class UserDaoTest {
     public void createUser() throws SQLException {
         User third = new User("third");
         userdao.create(third);
-        assertEquals(userdao.read(3).toString(), "3 third");
+        assertEquals(userdao.read(3).toString(), "third");
     }
 
     @Test

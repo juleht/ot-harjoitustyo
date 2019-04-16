@@ -18,7 +18,7 @@ public class UserTest {
 
     @Test
     public void constructorCreatesUser() {
-        assertEquals(user.toString(), "1 username");
+        assertEquals(user.toString(), "username");
     }
 
 }
