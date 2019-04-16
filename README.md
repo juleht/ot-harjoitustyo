@@ -45,6 +45,8 @@ budgetApp.jar
 
 #### Checkstyle
 
-Tiedostoon [checkstyle.xml](https://github.com/juleht/ot-harjoitustyo/blob/master/Budget/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla 
+Tiedostoon [checkstyle.xml](https://github.com/juleht/ot-harjoitustyo/blob/master/Budget/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+
 mvn jxr:jxr checkstyle:checkstyle
+
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
