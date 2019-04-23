@@ -8,4 +8,5 @@ päivä | aika | mitä tein
 12.4. | 8 | projektin käyttöliittymä muutettu graafiseksi
 13.4. | 8 | projektiin lisätty uudet toiminnallisuudet tulojen ja menojen kirjaamiseksi, ja tulojen ja menojen näyttämiseksi
 16.4. | 4 | sekvenssikaavio
-yhteensä| 43|
+23.4. | 10| javadoc, arkkitehtuurikuvaus, käyttöohje
+yhteensä| 53|
