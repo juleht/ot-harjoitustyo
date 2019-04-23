@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -262,6 +264,17 @@ public class Gui extends Application {
         // move to main scene
         returnToMainButton.setOnAction((event) -> {
             primaryStage.setScene(headScene);
+            try {
+                balance.setText(String.valueOf(this.budgetLogic.balance()));
+                expences.setText(String.valueOf(this.budgetLogic.expenses()));
+                incomes.setText(String.valueOf(this.budgetLogic.incomes()));
+                amount.setText("amount");
+                eventtype.setText("event type");
+                date.setText("Date (yyyy-MM-dd)");
+            } catch (SQLException ex) {
+                Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         });
     }
 
