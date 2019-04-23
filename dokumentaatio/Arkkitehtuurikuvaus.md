@@ -4,6 +4,7 @@
 
 Ohjelmassa on kolmitasoinen kerrosarkkitehtuuri. Koodin pakkausrakenne:
 
+![pakkauskaavio](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Pakkauskaavio.jpg)
 
 Pakkaus budget.ui sisältää käyttöliittymän. Käyttöliittymä on tehty 
 JavaFx:llä. Pakkaus budget.domain sisältää sovelluslogiikan ja budget.dao 
@@ -32,8 +33,11 @@ tarkastella meno ja tulo tapahtumiaan ja poistaa niitä tarvittaessa.
 ## Sovelluslogiikka
 
 Sovelluksen loogisen datamallin muodostavat luokat user ja event. 
-User-luokka kuvaavat käyttäjiä ja eventluokka käyttäjän meno- ja 
-tulotapahtumia.
+User-luokka kuvaavaa sovelluksen käyttäjiä ja event-luokka käyttäjän meno- 
+ja tulotapahtumia.
+
+![luokkakuva](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Luokkakaavio.jpg)
+
 
 Sovelluksen toiminnoista vastaa luokka BudgetLogic, jossa käyttöliittymän 
 toiminnot ovat. Toimintoja ovat:
