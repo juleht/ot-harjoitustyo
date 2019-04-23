@@ -1,6 +1,6 @@
-#Arkkiterhtuurikuvaus
+# Arkkiterhtuurikuvaus
 
-##Rakenne
+## Rakenne
 
 Ohjelmassa on kolmitasoinen kerrosarkkitehtuuri. Koodin pakkausrakenne:
 
@@ -9,14 +9,14 @@ Pakkaus budget.ui sisältää käyttöliittymän. Käyttöliittymä on tehty
 JavaFx:llä. Pakkaus budget.domain sisältää sovelluslogiikan ja budget.dao 
 koodin joka tallentaa tietoa tietokantaan.
 
-##Käyttöliittymä
+## Käyttöliittymä
 
 Käyttöliittymä sisältää neljä erillistä näkymää.
 
-*sovellukseen kirjautuminen
-*käyttäjän luominen sovellukseen
-*päänäkymän
-*näkymän menoista ja tuloista
+* sovellukseen kirjautuminen
+* käyttäjän luominen sovellukseen
+* päänäkymän
+* näkymän menoista ja tuloista
 
 Kaikki näkymät on toteuttettu Scene-oliolla ja kaikki näytettään samassa 
 Stage ikkunassa, joka sisältää kaikki JavaFX-applicaation oliot. 
@@ -29,7 +29,7 @@ Käyttäjän kirjautuessa sovellukseen. Käyttäjän on mahdollista
 kirjata sovellukseen uusia tuloja ja menoja. Käyttäjän on myös mahdollista 
 tarkastella meno ja tulo tapahtumiaan ja poistaa niitä tarvittaessa. 
 
-##Sovelluslogiikka
+## Sovelluslogiikka
 
 Sovelluksen loogisen datamallin muodostavat luokat user ja event. 
 User-luokka kuvaavat käyttäjiä ja eventluokka käyttäjän meno- ja 
@@ -38,14 +38,14 @@ tulotapahtumia.
 Sovelluksen toiminnoista vastaa luokka BudgetLogic, jossa käyttöliittymän 
 toiminnot ovat. Toimintoja ovat:
 
-*Boolean createUser(String username)
-*User logOn(String username)
-*Event createEvent(double amount, String eventtype, LocalDate eventdate)
-*double incomes()
-*double expenses()
-*double balance()
-*List<Event> listEvents()  
-*void deleteEvent(Event e)
+* Boolean createUser(String username)
+* User logOn(String username)
+* Event createEvent(double amount, String eventtype, LocalDate eventdate)
+* double incomes()
+* double expenses()
+* double balance()
+* List<Event> listEvents()  
+* void deleteEvent(Event e)
 
 Tiedon tallentamisesta tietokantaan vastaa luokat UserDao ja EventDao. 
 Molemmat luokat toteuttavat rajapinnan DAO ja sijaitsevat pakkauksessa 
@@ -56,7 +56,7 @@ suhdetta toisiinsa.
 
 ![pakkauskaavio kuva](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/BudgetPackageFigure.png)
 
-##Tiedon pysyväistallennus
+## Tiedon pysyväistallennus
 
 budget.dao pakkauksen luokat UserDao ja EventDao vastaavat tiedon 
 hakemisesta tietokannasta ja tallentamisesta tietokantaan. 
@@ -73,7 +73,7 @@ tunnistamiseksi.
 
 id | käyttäjätunnus
 -- | ------------
-1  | Jari Aarnio
+1  | Jari Korhonen
 2  | Matti Virtanen
 3  | Riitta Mäkinen
 
@@ -86,16 +86,16 @@ tiedot ovat tapahtuman summa, päivämäärä ja tyyppi.
 
 id | summa | tyyppi | päivämäärä | käyttäjä_id
 -- | ----- | ------ | ---------- | -----------
-1  | -100  | suojeluraha | 20-3-2011 | 1
+1  | -100  | ruoka  | 20-3-2011  | 1
 2  | -20   | taksi  | 21-2-2019  | 2
 3  | 2000  | palkka | 1-3-2019   | 2
 
 
-##Päätoiminnallisuudet
+## Päätoiminnallisuudet
 
 Sovelluksen toiminnallisuudet kuvattuna sekvenssikaavioina.
 
-####käyttäjänimen luominen
+#### käyttäjänimen luominen
 
 Kun uusi käyttäjänimi luodaan, käyttäjä syöttää käyttäjänimen, ja sovellus 
 etenee seuraavasti: 
