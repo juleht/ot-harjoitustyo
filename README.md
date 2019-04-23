@@ -20,6 +20,7 @@ pitää kirjaa henkilökohtaista kuluistaan.
 
 [viikon 5 release](https://github.com/juleht/ot-harjoitustyo/releases)
 
+[viikon 6 release](https://github.com/juleht/ot-harjoitustyo/releases/tag/viikko6)
 ### Komentorivitoiminnot
 
 #### Testaus
