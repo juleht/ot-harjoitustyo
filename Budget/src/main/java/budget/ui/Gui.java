@@ -30,13 +30,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
-
+    
     private Database database;
     private EventDao eventDao;
     private UserDao userDao;
     private Logic budgetLogic;
     private VBox eventNodes;
-
+    
     @Override
     public void init() throws SQLException {
         this.database = createDB();
@@ -44,7 +44,7 @@ public class Gui extends Application {
         this.userDao = new UserDao(database);
         this.budgetLogic = new Logic(userDao, eventDao);
     }
-
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -55,7 +55,7 @@ public class Gui extends Application {
         Label usernameLogInLabel = new Label("Enter username: ");
         TextField usernameLoginTextField = new TextField();
         Label usernameLogInInfo = new Label();
-
+        
         Button logInButton = new Button("log in");
         Button createUsernameButton = new Button("create username");
         Button endProgram = new Button("end");
@@ -77,7 +77,7 @@ public class Gui extends Application {
 
         // Show logInscene at start
         Scene logInScene = new Scene(layoutLogIn);
-
+        
         primaryStage.setScene(logInScene);
         primaryStage.show();
 
@@ -167,6 +167,25 @@ public class Gui extends Application {
         Scene eventsScene = new Scene(eventsLayoutMain);
 
         //
+        // Statistics scene
+        // components
+        //
+        Button statisticsButton = new Button("Return to main");
+        Label highestIncome = new Label("a");
+        Label highestExpence = new Label("b");
+        Label numberOfEvents = new Label("c");
+        Label avgIncomes = new Label("d");
+        Label avgExpences = new Label("e");
+        
+        VBox statisticsLayout = new VBox();
+        statisticsLayout.getChildren().addAll(statisticsButton, highestIncome, highestExpence, numberOfEvents, avgIncomes, avgExpences);
+        
+        statisticsLayout.setSpacing(10);
+        statisticsLayout.setPadding(new Insets(10));
+        statisticsLayout.setPrefSize(550, 350);
+        
+        Scene statisticsScene = new Scene(statisticsLayout);
+        //
         // Button actions
         //
         // log in scene
@@ -214,7 +233,7 @@ public class Gui extends Application {
                     primaryStage.setScene(logInScene);
                 }
             } catch (SQLException ex) {
-
+                
             }
         });
         // return to log in scene
@@ -243,20 +262,20 @@ public class Gui extends Application {
                 eventtype.setText("event type");
                 date.setText("Date (yyyy-MM-dd)");
             } catch (SQLException ex) {
-
+                
             } catch (NumberFormatException e) {
                 eventInfo.setText("amount incorrect should be integer or real example 1.1");
             } catch (DateTimeParseException e) {
                 eventInfo.setText("Date format should be yyyy-MM-dd example 1000-01-01");
             }
-
+            
         });
         // move to events scene
         events.setOnAction((event) -> {
             try {
                 listEvents();
             } catch (SQLException ex) {
-
+                
             }
             primaryStage.setScene(eventsScene);
         });
@@ -274,27 +293,47 @@ public class Gui extends Application {
             } catch (SQLException ex) {
                 Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+        });
+        // move to statistics scene
+        statistics.setOnAction((event) -> {
+            primaryStage.setScene(statisticsScene);
+            try {
+                highestIncome.setText("Highest user income :" + this.budgetLogic.highestIncome().toString());
+                highestExpence.setText("Highest user expence: " + this.budgetLogic.highestExpence().toString());
+                numberOfEvents.setText("Number of user incomes or expences: " + this.budgetLogic.numberOfEvents());
+                avgIncomes.setText("Average of user incomes: " + this.budgetLogic.averageIncomes());
+                avgExpences.setText("Average or user expences: " + this.budgetLogic.averageExpences());
+                
+            } catch (SQLException ex) {
+            }
+            
+        });
 
+        // statistics scene
+        // return to main
+        statisticsButton.setOnAction((event) -> {
+            primaryStage.setScene(headScene);
         });
     }
-
+    
     private Node eventsList(Event e) {
         VBox layout = new VBox();
         HBox insidelayout = new HBox();
         Label label = new Label(e.toString());
         Button button = new Button("delete");
-
+        
         button.setOnAction((event) -> {
-
+            
             try {
                 this.budgetLogic.deleteEvent(e);
                 listEvents();
             } catch (SQLException ex) {
-
+                
             } catch (NullPointerException n) {
-
+                
             }
-
+            
         });
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -302,20 +341,20 @@ public class Gui extends Application {
         insidelayout.setSpacing(10);
         layout.setPadding(new Insets(10));
         insidelayout.setPadding(new Insets(10));
-
+        
         insidelayout.getChildren().addAll(label, spacer, button);
         layout.getChildren().add(insidelayout);
-
+        
         return layout;
     }
-
+    
     private Database createDB() throws SQLException {
         String databaseName = "budgetDB";
         Database db = new Database(databaseName);
         db.init();
         return db;
     }
-
+    
     private void listEvents() throws SQLException {
         eventNodes.getChildren().clear();
         List<Event> eventlist = this.budgetLogic.listUserEvents();
@@ -323,9 +362,9 @@ public class Gui extends Application {
             eventNodes.getChildren().add(eventsList(e));
         }
     }
-
+    
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }

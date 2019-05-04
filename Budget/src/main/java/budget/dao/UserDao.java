@@ -12,7 +12,7 @@ import java.util.List;
  * DAO luokka, jolla käsitellään user-taulua tietokannassa
  *
  */
-public class UserDao implements Dao<User, Integer> {
+public class UserDao implements Dao<User, String> {
 
     private Database database;
 
@@ -42,79 +42,13 @@ public class UserDao implements Dao<User, Integer> {
     }
 
     /**
-     * Metodi lukee käyttäjänimen tietokannasta
-     *
-     * @param key metodille annetaan parametriksi käyttäjän id
-     * @return metodi palauttaa null, jos tietokannassa ei ole id:tä vastaavaa
-     * käyttäjää metodi palauttaa käyttäjän jos tietokannassa on id:tä vastaava
-     * käyttäjänimi
-     * @throws SQLException e
-     */
-    @Override
-    public User read(Integer key) throws SQLException {
-        Connection conn = database.getConnection();
-        String sql = "SELECT * FROM User WHERE id = ?";
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setInt(1, key);
-        ResultSet rs = st.executeQuery();
-
-        if (!rs.next()) {
-            return null;
-        }
-
-        User u = new User(rs.getInt("id"), rs.getString("username"));
-        st.close();
-        rs.close();
-        conn.close();
-        return u;
-    }
-
-    /**
-     * Metodin päivittää käyttäjänimen tietokantaan
-     *
-     * @param user metodille annetaan parametriksi käyttäjä-olio
-     * @return metodi palauttaa päivitetyn käyttäjä-olion
-     * @throws SQLException e
-     */
-    @Override
-    public User update(User user) throws SQLException {
-        Connection conn = database.getConnection();
-        String sql = "UPDATE User SET username = ? WHERE id = ?";
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, user.getUsername());
-        st.setInt(2, user.getId());
-        st.executeUpdate();
-        st.close();
-        conn.close();
-        return user;
-    }
-
-    /**
-     * Metodi poistaa käyttäjänimen tietokannasta
-     *
-     * @param key metodille annetaan parametriksi poistettavan käyttäjän id
-     * @throws SQLException e
-     */
-    @Override
-    public void delete(Integer key) throws SQLException {
-        Connection conn = database.getConnection();
-        String sql = "DELETE FROM User WHERE id = ?";
-        PreparedStatement st = conn.prepareStatement(sql);
-
-        st.setInt(1, key);
-        st.executeUpdate();
-        st.close();
-        conn.close();
-    }
-
-    /**
      * Metodi listaa tietokannassa olevien käyttäjien id:t ja käyttäjänimet
      *
      * @return metodi palauttaa listan käyttäjä olioita List muodossa
      * @throws SQLException e
      */
     @Override
-    public List<User> list() throws SQLException {
+    public List<User> listAll() throws SQLException {
         Connection conn = database.getConnection();
         String sql = "SELECT * FROM User";
         List<User> users = new ArrayList<>();
@@ -145,7 +79,8 @@ public class UserDao implements Dao<User, Integer> {
      * on parametria vastaava käyttäjänimi
      * @throws SQLException e
      */
-    public User readUsername(String username) throws SQLException {
+    @Override
+    public User read(String username) throws SQLException {
         Connection conn = database.getConnection();
         String sql = "SELECT * FROM User WHERE username = ?";
         PreparedStatement st = conn.prepareStatement(sql);
@@ -161,6 +96,31 @@ public class UserDao implements Dao<User, Integer> {
         rs.close();
         conn.close();
         return u;
+    }
+
+    /**
+     * Metodia ei tueta tässä luokassa
+     *
+     * @param key avain
+     * @throws SQLException
+     */
+    @Override
+    public void delete(String key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported in this class.");
+
+    }
+
+    /**
+     * Metodia ei tueta tässä luokassa
+     *
+     * @param key avain
+     * @return null
+     * @throws SQLException
+     */
+    @Override
+    public List<User> listById(String key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported in this class.");
+
     }
 
 }

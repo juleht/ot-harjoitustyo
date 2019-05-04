@@ -37,7 +37,7 @@ public class EventDao implements Dao<Event, Integer> {
         PreparedStatement st = conn.prepareStatement(sql);
         st.setDouble(1, event.getAmount());
         st.setString(2, event.getEventtype());
-        st.setDate(3, java.sql.Date.valueOf(event.getEventdate()));
+        st.setDate(3, Date.valueOf(event.getEventdate()));
         st.setInt(4, event.getUser().getId());
 
         st.executeUpdate();
@@ -78,31 +78,6 @@ public class EventDao implements Dao<Event, Integer> {
     }
 
     /**
-     * Metodin avulla voi päivittää meno- tai tulo tapahtuman
-     *
-     * @param event metodille annetaan parametriksi päivitettävä meno- tai
-     * tulotapahtuman.
-     * @return metodi palauttaa päivitetyn meno- tai tulotapahtuman.
-     * @throws SQLException e
-     */
-    @Override
-    public Event update(Event event) throws SQLException {
-        Connection conn = database.getConnection();
-        String sql = "UPDATE Event SET amount = ?, eventtype=?, eventdate = ? WHERE id = ?";
-        PreparedStatement st = conn.prepareStatement(sql);
-
-        st.setDouble(1, event.getAmount());
-        st.setString(2, event.getEventtype());
-        st.setDate(3, Date.valueOf(event.getEventdate()));
-        st.setInt(4, event.getId());
-
-        st.executeUpdate();
-        st.close();
-        conn.close();
-        return event;
-    }
-
-    /**
      * Metodi poistaa tietokannasta meno- tai tulotapahtuman.
      *
      * @param key metodille annetaan parametriksi meno- tai tulotapahtuman id.
@@ -122,47 +97,32 @@ public class EventDao implements Dao<Event, Integer> {
     }
 
     /**
-     * Metodi listaa tietokannassa olevat tapahtumat
+     * Metodia ei tueta tässä luokassa
      *
-     * @return metodi palauttaa listan tapahtumista List muodossa
-     * @throws SQLException e
+     * @return error
+     * @throws SQLException
      */
     @Override
-    public List<Event> list() throws SQLException {
-        Connection conn = database.getConnection();
-        String sql = "SELECT * FROM Event";
-        List<Event> events = new ArrayList<>();
+    public List<Event> listAll() throws SQLException {
+        throw new UnsupportedOperationException("Not supported in this class.");
 
-        PreparedStatement st = conn.prepareCall(sql);
-
-        ResultSet rs = st.executeQuery();
-
-        while (rs.next()) {
-            int id = rs.getInt("id");
-            double amount = rs.getDouble("amount");
-            String eventtype = rs.getString("eventtype");
-            LocalDate edate = rs.getDate("eventdate").toLocalDate();
-            Event e = new Event(id, amount, eventtype, edate);
-            events.add(e);
-
-        }
-        return events;
     }
 
     /**
      * Metodi listaa käyttäjä kohtaiset meno- tai tulotapahtumat tietokannasta
      *
-     * @param userId metodille annetaan parametriksi sen käyttäjän id, jonka
+     * @param key metodille annetaan parametriksi sen käyttäjän id, jonka
      * tapahtumat halutaan listata
      * @return metodi palauttaa listan tapahtumista, muodossa List
      * @throws SQLException e
      */
-    public List<Event> listById(int userId) throws SQLException {
+    @Override
+    public List<Event> listById(Integer key) throws SQLException {
         Connection conn = database.getConnection();
         String sql = "SELECT * FROM Event WHERE user_id = ?";
         List<Event> events = new ArrayList<>();
         PreparedStatement st = conn.prepareCall(sql);
-        st.setInt(1, userId);
+        st.setInt(1, key);
         ResultSet rs = st.executeQuery();
 
         while (rs.next()) {

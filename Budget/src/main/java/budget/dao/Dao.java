@@ -16,10 +16,10 @@ public interface Dao<T, K> {
 
     T read(K key) throws SQLException;
 
-    T update(T object) throws SQLException;
-
     void delete(K key) throws SQLException;
 
-    List<T> list() throws SQLException;
+    List<T> listAll() throws SQLException;
+    
+    List<T> listById(K key) throws SQLException;
 
 }

@@ -85,39 +85,9 @@ public class EventDaoTest {
     }
 
     @Test
-    public void updateChangesEventAmountAllElseEqual() throws SQLException {
-        Event second = eventDao.read(2);
-        second.setAmount(20.0);
-        eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "20.0 clothes 2019-02-02");
-    }
-
-    @Test
-    public void updateChangesEventTypeAllElseEqual() throws SQLException {
-        Event second = eventDao.read(2);
-        second.setEventtype("food");
-        eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "10.0 food 2019-02-02");
-    }
-
-    @Test
-    public void updateChangesEventDateAllElseEqual() throws SQLException {
-        Event second = eventDao.read(2);
-        second.setEventdate(LocalDate.parse("2019-02-03"));
-        eventDao.update(second);
-        assertEquals(eventDao.read(2).toString(), "10.0 clothes 2019-02-03");
-    }
-
-    @Test
     public void deleteEvent() throws SQLException {
         eventDao.delete(1);
         assertEquals(eventDao.read(1), null);
-    }
-
-    @Test
-    public void list() throws SQLException {
-        List<Event> events = eventDao.list();
-        assertEquals(events.size(), 2);
     }
 
     private Database createDB() throws SQLException {

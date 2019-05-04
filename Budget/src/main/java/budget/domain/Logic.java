@@ -40,7 +40,7 @@ public class Logic {
      * @throws SQLException e
      */
     public Boolean createUser(String username) throws SQLException {
-        List<User> users = userDao.list();
+        List<User> users = userDao.listAll();
         for (User u : users) {
             if (u.getUsername().equals(username) || username.length() <= 3) {
                 return false;
@@ -60,7 +60,7 @@ public class Logic {
      * @throws SQLException e
      */
     public User logOn(String username) throws SQLException {
-        User u = userDao.readUsername(username);
+        User u = userDao.read(username);
         if (u != null) {
             userLoggedIn = u;
             return userLoggedIn;
@@ -110,13 +110,13 @@ public class Logic {
      */
     public double expenses() throws SQLException {
         List<Event> events = listUserEvents();
-        double incomes = 0;
+        double expence = 0;
         for (Event e : events) {
             if (e.getAmount() < 0) {
-                incomes += e.getAmount();
+                expence += e.getAmount();
             }
         }
-        return incomes;
+        return expence;
     }
 
     /**
@@ -127,11 +127,11 @@ public class Logic {
      */
     public double balance() throws SQLException {
         List<Event> events = listUserEvents();
-        double incomes = 0;
+        double balance = 0;
         for (Event e : events) {
-            incomes += e.getAmount();
+            balance += e.getAmount();
         }
-        return incomes;
+        return balance;
     }
 
     /**
@@ -161,6 +161,86 @@ public class Logic {
                 eventDao.delete(k.getId());
             }
         }
+    }
 
+    /**
+     * Metodi palauttaa suurimman tulon
+     *
+     * @return metodi palauttaa käyttäjän suurimman tulon Event muodossa
+     * @throws SQLException
+     */
+    public Event highestIncome() throws SQLException {
+        List<Event> events = listUserEvents();
+        Event e = events.get(0);
+        for (Event k : events) {
+            if (k.getAmount() > e.getAmount()) {
+                e = k;
+            }
+        }
+        return e;
+    }
+
+    /**
+     * Metodi palauttaa suurimman kulun
+     *
+     * @return metodi palauttaa käyttäjän suurimman menon Event muodossa
+     * @throws SQLException
+     */
+    public Event highestExpence() throws SQLException {
+        List<Event> events = listUserEvents();
+        Event e = events.get(0);
+        for (Event k : events) {
+            if (k.getAmount() < e.getAmount()) {
+                e = k;
+            }
+        }
+        return e;
+    }
+
+    /**
+     * Metodi palauttaa käyttäjän tapahtumien määrän
+     *
+     * @return tapahtumien määrä
+     * @throws SQLException
+     */
+    public int numberOfEvents() throws SQLException {
+        List<Event> events = listUserEvents();
+        return events.size();
+    }
+
+    /**
+     * Metodi palauttaa käyttäjän tulojen keskiarvon
+     *
+     * @return keskiarvo tuloista
+     * @throws SQLException
+     */
+    public double averageIncomes() throws SQLException {
+        List<Event> events = listUserEvents();
+        double sum = incomes();
+        int i = 0;
+        for (Event e : events) {
+            if (e.getAmount() > 0) {
+                i++;
+            }
+        }
+        return sum / i;
+    }
+
+    /**
+     * Metodi palauttaa käyttäjän menojen keskiarvon
+     *
+     * @return keskiarvo
+     * @throws SQLException
+     */
+    public double averageExpences() throws SQLException {
+        List<Event> events = listUserEvents();
+        double sum = expenses();
+        int i = 0;
+        for (Event e : events) {
+            if (e.getAmount() > 0) {
+                i++;
+            }
+        }
+        return sum / i;
     }
 }

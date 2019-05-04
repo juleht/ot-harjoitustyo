@@ -37,38 +37,23 @@ public class UserDaoTest {
     public void createUser() throws SQLException {
         User third = new User("third");
         userdao.create(third);
-        assertEquals(userdao.read(3).toString(), "third");
+        assertEquals(userdao.read("third").toString(), "third");
     }
 
     @Test
     public void readUsername() throws SQLException {
-        assertEquals(userdao.read(1).getUsername(), "first");
+        assertEquals(userdao.read("first").toString(), "first");
     }
 
     @Test
     public void readUserId() throws SQLException {
-        assertEquals(userdao.read(1).getId(), 1);
+        assertEquals(userdao.read("first").getId(), 1);
 
-    }
-
-    @Test
-    public void updateUserName() throws SQLException {
-        User second = userdao.read(2);
-        second.setUsername("updated second");
-        userdao.update(second);
-        assertEquals(userdao.read(2).getUsername(), "updated second");
-
-    }
-
-    @Test
-    public void deleteUser() throws SQLException {
-        userdao.delete(1);
-        assertEquals(userdao.read(1), null);
     }
 
     @Test
     public void list() throws SQLException {
-        List<User> users = userdao.list();
+        List<User> users = userdao.listAll();
         assertEquals(users.size(), 2);
     }
 
