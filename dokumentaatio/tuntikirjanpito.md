@@ -9,4 +9,5 @@ päivä | aika | mitä tein
 13.4. | 8 | projektiin lisätty uudet toiminnallisuudet tulojen ja menojen kirjaamiseksi, ja tulojen ja menojen näyttämiseksi
 16.4. | 4 | sekvenssikaavio
 23.4. | 10| javadoc, arkkitehtuurikuvaus, käyttöohje
+4.5.  | 10| projektin päivitysloppupalautuskuntoon ja vaatimusmäärittelyn korjaus
 yhteensä| 53|
