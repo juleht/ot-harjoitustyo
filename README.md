@@ -18,9 +18,9 @@ pitää kirjaa henkilökohtaista kuluistaan.
 
 ### Releaset
 
-[viikon 5 release](https://github.com/juleht/ot-harjoitustyo/releases)
+[viikon 7 
+release](https://github.com/juleht/ot-harjoitustyo/releases/tag/Viikko7)
 
-[viikon 6 release](https://github.com/juleht/ot-harjoitustyo/releases/tag/viikko6)
 ### Komentorivitoiminnot
 
 #### Testaus
