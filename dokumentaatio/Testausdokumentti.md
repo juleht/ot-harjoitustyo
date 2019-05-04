@@ -31,7 +31,7 @@ Testauksessa ei huomioida käyttäliittymää ollenkaan. Testien kattavuus on
 tällöin 92%. Käytännössä kattavuutta laskee se, että User ja Event 
 luokkien get ja set metodeita ei testata.
 
-
+![testikattavuuskuva](https://github.com/juleht/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/testikattavuus.jpg)
 
 #### Asennus
 
